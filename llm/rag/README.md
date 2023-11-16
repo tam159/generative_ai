@@ -27,6 +27,31 @@ Eventually we can run through this labeled dataset with above pre-defined metric
 
 For a better observation, we should also use some LLMOps platforms such as [LangSmith][LangSmith], [MLflow][MLflow] or integrate [DeepEval][DeepEval] in CI/CD pipelines.
 
+## 3. Multi-vector retriever
+When splitting documents for retrieval, there are often conflicting desires:
+- We may want to have small chunks, so that their embeddings can most accurately reflect their meaning. If too long, then the embeddings can lose meaning.
+- We also want to have long enough documents that the contexts are retained. Separating the document many times by `separators` and `chunk_size` sometimes breaks the context unexpectedly. It's also hard to combine the chunks in a right order to form the meaningful document for a prompt context. 
+
+Below approaches allow us to balance precise embeddings and context retention by splitting documents into smaller chunks for embedding but retrieving larger text information or even the whole original document for the prompt context, since many LLM models nowadays support long context window, e.g. GPT-4 Turbo supports 128,000 tokens.
+
+| <img src="media/multi-vector-retriever.png" width="60%" height="60%"> |
+|:---------------------------------------------------------------------:| 
+|                        *Image by TheAiEdge.io*                        |
+
+- Typical RAG: Traditional method where the exact data indexed is the data retrieved.
+- Parent Document Retriever:
+  - Instead of indexing entire documents, data is divided into smaller chunks, referred to as Parent and Child documents.
+  - Child documents are indexed for better representation of specific concepts, while parent documents are retrieved to ensure context retention.
+  - Sometimes, the full documents can be too big to retrieve them as is. In that case, first split the raw documents into larger chunks, and then split them into smaller chunks. We then index the smaller chunks, but on retrieval we retrieve the larger chunks (but still not the full documents).
+- Hypothetical Questions:
+  - Documents are processed to generate potential questions they might answer. 
+  - These questions are then indexed for better representation of specific concepts, while parent documents are retrieved to ensure context retention.
+- Summaries:
+  - Instead of indexing the entire document, a summary of the document is created and indexed. 
+  - Similarly, the parent document is retrieved in the application.
+
+Reference: [MultiVector Retriever](https://python.langchain.com/docs/modules/data_connection/retrievers/multi_vector)
+
 
 <!-- links -->
 
