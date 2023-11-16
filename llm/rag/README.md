@@ -9,7 +9,7 @@ But it is hard to make it work well. In this article, I will share some approach
 Chat histories and user feedbacks are important for the application analytics. We will use them later in a next session.
 ![rag-analysis-schema](media/rag-analysis-schema.svg)
 
-In an above schema, 1 collection should have multiple embeddings. 1 user can have many chat sessions, and in each chat session, we store the messages (between human and AI) and their analytical information such as generated questions (condense questions or questions after query transformations), retrieved chunks and corresponding distance scores, user feedback, .etc  
+In an above schema, 1 collection should have multiple embeddings. 1 user can have many chat sessions, and in each chat session, we store the messages (between human and AI) and their analytical information such as generated questions (condense questions or questions after query transformations), retrieved chunks and corresponding distance scores, user feedback, .etc.  
 
 ## 2. Start evaluating your application
 A naive RAG app can have some challenges, e.g.: bad retrieval (low precision, low recall, outdated information), bad response generation (hallucination, irrelevance, toxicity/bias), .etc
