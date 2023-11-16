@@ -1,0 +1,69 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: alembic|custom_evaluation/ragas|.github
+      - id: end-of-file-fixer
+        exclude: alembic|custom_evaluation/ragas|.github
+      - id: check-yaml
+        exclude: alembic|custom_evaluation/ragas|.github
+      - id: check-added-large-files
+        exclude: alembic|custom_evaluation/ragas|.github
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.17.0
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/psf/black
+    rev: 23.11.0
+    hooks:
+      - id: black
+        exclude: alembic|custom_evaluation/ragas|.github
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.7.0
+    hooks:
+      - id: mypy
+        additional_dependencies: [ pydantic, types-PyYAML, types-requests, types-python-dateutil ]
+        exclude: alembic|custom_evaluation/ragas|.github
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.5
+    hooks:
+      - id: ruff
+        exclude: alembic|custom_evaluation/ragas|.github
+
+#  - repo: https://github.com/PyCQA/isort
+#    rev: 5.12.0
+#    hooks:
+#      - id: isort
+#
+#  - repo: https://github.com/pycqa/flake8
+#    rev: 6.0.0
+#    hooks:
+#      - id: flake8
+#        exclude: notebooks
+#
+#  - repo: https://github.com/PyCQA/pydocstyle
+#    rev: 6.3.0
+#    hooks:
+#      - id: pydocstyle
+#        exclude: notebooks
+#        additional_dependencies: [ tomli ]
+#
+#  - repo: https://github.com/tconbeer/sqlfmt
+#    rev: v0.19.1
+#    hooks:
+#      - id: sqlfmt
+#        language_version: python
+#
+#  - repo: https://github.com/sqlfluff/sqlfluff
+#    rev: 2.1.3
+#    hooks:
+#      - id: sqlfluff-lint
+#        additional_dependencies: [ dbt-redshift, sqlfluff-templater-dbt ]
+#        args: [ --dialect, "redshift", --exclude-rules, "RF02" ]
