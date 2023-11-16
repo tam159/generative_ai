@@ -34,9 +34,9 @@ When splitting documents for retrieval, there are often conflicting desires:
 
 Below approaches allow us to balance precise embeddings and context retention by splitting documents into smaller chunks for embedding but retrieving larger text information or even the whole original document for the prompt context, since many LLM models nowadays support long context window, e.g. GPT-4 Turbo supports 128,000 tokens.
 
-| <img src="media/multi-vector-retriever.png" width="60%" height="60%"> |
-|:---------------------------------------------------------------------:| 
-|                        *Image by TheAiEdge.io*                        |
+| <img src="media/multi-vector-retriever.png" width="50%" height="50%"> |
+|:----------------------------------------------------------------------| 
+| *Image by TheAiEdge.io*                                               |
 
 - Typical RAG: Traditional method where the exact data indexed is the data retrieved.
 - Parent Document Retriever:
