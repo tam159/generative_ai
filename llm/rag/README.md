@@ -49,7 +49,7 @@ Below approaches allow us to balance precise embeddings and context retention by
   - Instead of indexing the entire document, a summary of the document is created and indexed. 
   - Similarly, the parent document is retrieved in the application.
 
-## 4. Query Transformations
+## 4. Query transformations
 Because the original query can not be always optimal to retrieve for the LLM, especially in the real world. The user often doesn't provide the full context and thinks about the question from a specific angle.
 
 Query transformation deals with transformations of the user's question before passing to the embedding model. Below are a few variations of query transform methods and their sample prompt implementation. They are all using an LLM to generate a new or multiple new queries.
@@ -70,6 +70,26 @@ Do you remember a `metadata` column in an above `embedding` table?  We can inclu
 
 With the database metadata schema, we use LLM to construct a structured query from the question to filter the document chunks. At the same time, the question is also converted into its vector representation for the similarity search. This kind of hybrid retrieval approaches are likely to become more and more common when RAG becomes a more widely adopted strategy.
 <img src="media/self-querying.svg" width="60%">
+
+### [Time-weighted retriever](https://python.langchain.com/docs/modules/data_connection/retrievers/time_weighted_vectorstore)
+In some cases, the information contained in the documents is only relevant if it is recent enough. In the context of a time-weighted retriever, the data is retrieved based on the hybrid score between semantic similarity and the age of the document.
+The algorithm for scoring it can be:
+```
+semantic_similarity + (1.0 - decay_rate) ^ hours_passed
+```
+
+## 6. Document selection optimization
+### [Re-ranking](https://python.langchain.com/docs/integrations/retrievers/cohere-reranker)
+After first-stage retrieval (lexical/keyword-based search or semantic/embedding-based search), doing re-ranking as a second stage to rank retrieved documents using relevance scores.
+
+| <img src="media/cohere-rerank.png">           |
+|:----------------------------------------------| 
+| *Image by Cohere.com*                         |
+
+### [Maximal Marginal Relevance (MMR)](https://python.langchain.com/docs/modules/model_io/prompts/example_selectors/mmr)
+Sometimes we retrieve more than we actually need, there can be similar documents capturing the same information. The MMR metric penalizes redundant information.
+
+The reranking is an iterative process where we measure the similarity of the vectors to the query and the similarity of the vectors to the vectors we have already re-ranked, end up with a vector similar to the query but dissimilar to the vectors we already reranked.
 
 
 
