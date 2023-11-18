@@ -91,6 +91,28 @@ Sometimes we retrieve more than we actually need, there can be similar documents
 
 The reranking is an iterative process where we measure the similarity of the vectors to the query and the similarity of the vectors to the vectors we have already re-ranked, end up with a vector similar to the query but dissimilar to the vectors we already reranked.
 
+## 7. [Context Optimization](https://python.langchain.com/docs/use_cases/summarization)
+Now that we have selected the correct documents to answer the question, we need to figure out how we will pass data as context for the LLM to answer the question.
+<img src="media/sutff-map-reduce.png" width="80%">
+- [Stuffing](https://python.langchain.com/docs/modules/chains/document/stuff) is the simplest method to pass data to the language model. It concatenates the text of those documents and pass it to the prompt.
+- [MapReduce](https://python.langchain.com/docs/modules/chains/document/map_reduce) implements a multi-stage summarization. It is a technique for summarizing large pieces of text by first summarizing smaller chunks of text and then combining those summaries into a single summary. Instead of summarization, we can also iterate through the documents to extract the information likely to answer the question.
+- [Refine](https://python.langchain.com/docs/modules/chains/document/refine) method is an alternative method to deal with large document summarization. It works by first running an initial prompt on a small chunk of data, generating some output. Then, for each subsequent document, the output from the previous document is passed in along with the new document, and the LLM is asked to refine the output based on the new document.
+- [Map-rerank](https://python.langchain.com/docs/modules/chains/document/map_rerank) strategy iterates through each document and tries to answer the question along with a score on how well the question was answered. We can then pick the answer with the highest score.
+
+|               | stuff                                                         | map_reduce                                                  | refine                                                      | map_rerank                                                  |
+|---------------|---------------------------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------|
+| **Pros**      | Only makes a single call to the LLM. When generating text, the LLM has access to all the data at once. | This can scale to larger documents (and more documents) than StuffDocumentsChain. The calls to the LLM on individual documents are independent and can therefore be parallelized. | Can pull in the more relevant context, and may be less lossy than MapReduceDocumentsChain. | The map re-rank documents chain runs an initial prompt on each document, that not only tries to complete a task but also gives a score for how certain it is in its answer. The highest scoring response is returned. |
+| **Cons**      | Most LLMs have a context length, and for large documents (or many documents) this will not work as it will result in a prompt larger than the context length. | Requires many more calls to the LLM than StuffDocumentsChain. Loses some information during the final combining call. Higher cost incurred in both map and reduce than stuff | Requires many more calls to the LLM than StuffDocumentsChain. The calls are also NOT independent, meaning they cannot be paralleled like MapReduceDocumentsChain. There are also some potential dependencies on the ordering of the documents. | This method assumes that only one of the documents contains the answer, so it tends to be less accurate. |
+
+
+## 8. [Multimodal RAG](https://blog.langchain.dev/semi-structured-multi-modal-rag)
+When dealing with semi-structured or unstructured data e.g. tables, text, and images, we might need multimodal LLM and/or multimodal embeddings, below are some options:
+![multimodal.png](media/multimodal.png)
+1. Use multimodal embeddings (such as CLIP) to embed images and text together. Retrieve either using similarity search, but simply link to images in a docstore. Pass raw images and text chunks to a multimodal LLM for synthesis.
+2. Use a multimodal LLM (such as GPT4-V, LLaVA, or FUYU-8b) to produce text summaries from images. Embed and retrieve text summaries using a text embedding model. And, again, reference raw text chunks or tables from a docstore for answer synthesis by the LLM 
+   1. Exclude image from the docstore, instead pass image text summary to LLM 
+   2. Use a multi-modal LLM for synthesis, with raw image and raw table, text
+
 
 
 <!-- links -->
