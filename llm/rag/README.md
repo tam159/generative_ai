@@ -3,7 +3,9 @@
 It is easy to prototype your first LLM RAG (Retrieval Augmented Generation) application, e.g. using this [chat-langchain][chat-langchain] template with below architecture.
 ![basic-rag](media/basic-rag.png)
 
-But it is hard to make it work well. In this article, I will share some approaches to enhance the performance of the LLM RAG application.
+But it is hard to make it work well. In this article, I gather and share some approaches to enhance the performance of the LLM RAG application.
+
+For more details, please refer to references I mentioned in each section.
 
 ## 1. Store message histories and user feedbacks
 Chat histories and user feedbacks are important for the application analytics. We will use them later in a next session.
@@ -113,6 +115,26 @@ When dealing with semi-structured or unstructured data e.g. tables, text, and im
    1. Exclude image from the docstore, instead pass image text summary to LLM 
    2. Use a multi-modal LLM for synthesis, with raw image and raw table, text
 
+## 9. [Agents](https://python.langchain.com/docs/modules/agents)
+Last but not least, you may not only build the RAG app to answer questions from documents, we can have multiple tools to augment the LLM app. An agent uses the LLM to choose a sequence of actions to take to solve a problem.
+
+![agents.png](media/agents.svg)
+
+The Agent can consist of some key components:
+- The Agent Core: This is the central component of the agent responsible for making decisions. It is powered by the LLM and a prompt that includes the agent's personality, background context, and prompting strategies.
+- Tools and Toolkits: Tools are functionalities that the agent can access and utilize to perform specific tasks. Toolkits are collections of related tools that work together to accomplish specific objectives. There are two important design considerations around tools:
+  - Giving the agent access to the right tools 
+  - Describing the tools in a way that is most helpful to the agent
+
+There are some types of agents we should first start with:
+- [ReAct](https://python.langchain.com/docs/modules/agents/agent_types/react)
+- [OpenAI functions](https://python.langchain.com/docs/modules/agents/agent_types/openai_functions_agent)
+- [OpenAI assistants](https://python.langchain.com/docs/modules/agents/agent_types/openai_assistants)
+
+## Conclusion
+I suggest to read all above methods, and then pick the ones that are most relevant to your use case. You can also combine multiple approaches to get the best result.
+
+If you find this article useful, please give it a star/like/clap and share it with your friends. Thanks for reading!
 
 
 <!-- links -->
