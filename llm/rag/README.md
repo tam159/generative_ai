@@ -1,11 +1,11 @@
-# 8 Methods to Enhance the Performance of a LLM RAG Application
+# 9 Methods to Enhance the Performance of a LLM RAG Application
 
 It is easy to prototype your first LLM RAG (Retrieval Augmented Generation) application, e.g. using this [chat-langchain][chat-langchain] template with below architecture.
 ![basic-rag](media/basic-rag.png)
 
 But it is hard to make it work well. In this article, I gather and share some approaches to enhance the performance of the LLM RAG application.
 
-For more details, please refer to references I mentioned in each section.
+For more details, please refer to references I mention in each section.
 
 ## 1. Store message histories and user feedbacks
 Chat histories and user feedbacks are important for the application analytics. We will use them later in a next session.
@@ -132,8 +132,8 @@ There are some types of agents we should first start with:
 - [OpenAI assistants](https://python.langchain.com/docs/modules/agents/agent_types/openai_assistants)
 
 ## Conclusion
-I suggest to read all above methods, and then pick the ones that are most relevant to your use case. You can also combine multiple approaches to get the best result.
-
+I suggest to read all above methods, and then pick the ones that are most relevant to your use case. You can also combine multiple approaches to get the best result. For example, the first architecture can be turned to a below one
+![advanced-rag](media/advanced-rag.svg)
 If you find this article useful, please give it a star/like/clap and share it with your friends. Thanks for reading!
 
 
