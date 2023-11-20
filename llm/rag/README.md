@@ -101,10 +101,10 @@ Now that we have selected the correct documents to answer the question, we need 
 - [Refine](https://python.langchain.com/docs/modules/chains/document/refine) method is an alternative method to deal with large document summarization. It works by first running an initial prompt on a small chunk of data, generating some output. Then, for each subsequent document, the output from the previous document is passed in along with the new document, and the LLM is asked to refine the output based on the new document.
 - [Map-rerank](https://python.langchain.com/docs/modules/chains/document/map_rerank) strategy iterates through each document and tries to answer the question along with a score on how well the question was answered. We can then pick the answer with the highest score.
 
-|               | stuff                                                         | map_reduce                                                  | refine                                                      | map_rerank                                                  |
-|---------------|---------------------------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------|
+|               | stuff                                                         | map_reduce                                                                                                                                                                        | refine                                                      | map_rerank                                                  |
+|---------------|---------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------|
 | **Pros**      | Only makes a single call to the LLM. When generating text, the LLM has access to all the data at once. | This can scale to larger documents (and more documents) than StuffDocumentsChain. The calls to the LLM on individual documents are independent and can therefore be parallelized. | Can pull in the more relevant context, and may be less lossy than MapReduceDocumentsChain. | The map re-rank documents chain runs an initial prompt on each document, that not only tries to complete a task but also gives a score for how certain it is in its answer. The highest scoring response is returned. |
-| **Cons**      | Most LLMs have a context length, and for large documents (or many documents) this will not work as it will result in a prompt larger than the context length. | Requires many more calls to the LLM than StuffDocumentsChain. Loses some information during the final combining call. Higher cost incurred in both map and reduce than stuff | Requires many more calls to the LLM than StuffDocumentsChain. The calls are also NOT independent, meaning they cannot be paralleled like MapReduceDocumentsChain. There are also some potential dependencies on the ordering of the documents. | This method assumes that only one of the documents contains the answer, so it tends to be less accurate. |
+| **Cons**      | Most LLMs have a context length, and for large documents (or many documents) this will not work as it will result in a prompt larger than the context length. | Requires many more calls to the LLM than StuffDocumentsChain. Loses some information during the final combining call. Higher cost incurred in both map and reduce than stuff.     | Requires many more calls to the LLM than StuffDocumentsChain. The calls are also NOT independent, meaning they cannot be paralleled like MapReduceDocumentsChain. There are also some potential dependencies on the ordering of the documents. | This method assumes that only one of the documents contains the answer, so it tends to be less accurate. |
 
 
 ## 8. [Multimodal RAG](https://blog.langchain.dev/semi-structured-multi-modal-rag)
@@ -123,8 +123,8 @@ Last but not least, you may not only build the RAG app to answer questions from 
 The Agent can consist of some key components:
 - The Agent Core: This is the central component of the agent responsible for making decisions. It is powered by the LLM and a prompt that includes the agent's personality, background context, and prompting strategies.
 - Tools and Toolkits: Tools are functionalities that the agent can access and utilize to perform specific tasks. Toolkits are collections of related tools that work together to accomplish specific objectives. There are two important design considerations around tools:
-  - Giving the agent access to the right tools 
-  - Describing the tools in a way that is most helpful to the agent
+  - Giving the agent access to the right tools.
+  - Describing the tools in a way that is most helpful to the agent.
 
 There are some types of agents we should first start with:
 - [ReAct](https://python.langchain.com/docs/modules/agents/agent_types/react)
@@ -132,9 +132,11 @@ There are some types of agents we should first start with:
 - [OpenAI assistants](https://python.langchain.com/docs/modules/agents/agent_types/openai_assistants)
 
 ## Conclusion
-I suggest to read all above methods, and then pick the ones that are most relevant to your use case. You can also combine multiple approaches to get the best result. For example, the first architecture can be turned to a below one
+I suggest to read all above methods, and then pick the ones that are most relevant to your use case. You can also combine multiple approaches to get the best result. For example, the first architecture can be turned to a below one. 
 ![advanced-rag](media/advanced-rag.gif)
-If you find this article useful, please give it a star/like/clap and share it with your friends. Thanks for reading!
+If you find this article useful, please give it a star and share it with your friends. Also kindly follow me in [LinkedIn][LinkedIn] and [Medium][Medium]
+
+Thanks for reading!
 
 
 <!-- links -->
@@ -144,3 +146,5 @@ If you find this article useful, please give it a star/like/clap and share it wi
 [LangSmith]: https://smith.langchain.com
 [MLflow]: https://github.com/mlflow/mlflow
 [DeepEval]: https://github.com/confident-ai/deepeval
+[LinkedIn]: https://www.linkedin.com/pulse/9-methods-enhance-performance-llm-rag-application-tam-nguyen-ooljc
+[Medium]: https://tam159.medium.com/9-methods-to-enhance-the-performance-of-a-llm-rag-application-3bedfdc842e1
