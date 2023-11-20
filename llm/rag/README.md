@@ -133,7 +133,7 @@ There are some types of agents we should first start with:
 
 ## Conclusion
 I suggest to read all above methods, and then pick the ones that are most relevant to your use case. You can also combine multiple approaches to get the best result. For example, the first architecture can be turned to a below one
-![advanced-rag](media/advanced-rag.png)
+![advanced-rag](media/advanced-rag.gif)
 If you find this article useful, please give it a star/like/clap and share it with your friends. Thanks for reading!
 
 
