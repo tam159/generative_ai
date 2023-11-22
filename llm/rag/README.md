@@ -138,7 +138,7 @@ There are some types of agents we should first start with:
 - [OpenAI assistants](https://python.langchain.com/docs/modules/agents/agent_types/openai_assistants)
 
 ## Conclusion
-I suggest to read all above methods and other [RAG Strategies from Open AI][OpenAI RAG Strategies], and then pick the ones that are most relevant to your use case. You can also combine multiple approaches to get the best result. For example, the first architecture can be turned to a below one. 
+I suggest to read all above methods and other [RAG Strategies from Open AI][OpenAI RAG Strategies], then pick the ones that are most relevant to your use case. You can also combine multiple approaches to get the best result. For example, the first architecture can be turned to a below one. 
 ![advanced-rag](media/advanced-rag.gif)
 If you find this article useful, please give it a star and share it with your friends. Also kindly follow me in [LinkedIn][LinkedIn] and [Medium][Medium]
 
