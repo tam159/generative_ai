@@ -66,7 +66,7 @@ Query transformation deals with transformations of the user's question before pa
 We can also combine multiple query transformation techniques to get the best result e.g.
 <img src="media/query-transformations.svg" width="200%">
 
-## 5. Retrieval optimization
+## 5. Query construction for retrieval optimization
 ### [Self-querying](https://python.langchain.com/docs/modules/data_connection/retrievers/self_query)
 Do you remember a `metadata` column in an above `embedding` table?  We can include additional information such as author, genre, rating, the date it was written, …, and any information about the document beyond the text itself.  We can define a schema and store the metadata in a structured way alongside the vector representation.
 
@@ -79,6 +79,12 @@ The algorithm for scoring it can be:
 ```
 semantic_similarity + (1.0 - decay_rate) ^ hours_passed
 ```
+
+### [Other query constructions](https://blog.langchain.dev/query-construction)
+  - [Text-to-SQL](https://blog.langchain.dev/llms-and-sql)
+  - [Text-To-SQL+semantic](https://github.com/langchain-ai/langchain/blob/master/cookbook/retrieval_in_sql.ipynb)
+  - [Text-to-Cypher](https://python.langchain.com/docs/use_cases/graph/graph_cypher_qa)
+![query-construction.png](media/query-construction.png)
 
 ## 6. Document selection optimization
 ### [Re-ranking](https://python.langchain.com/docs/integrations/retrievers/cohere-reranker)
@@ -116,7 +122,7 @@ When dealing with semi-structured or unstructured data e.g. tables, text, and im
    2. Use a multi-modal LLM for synthesis, with raw image and raw table, text
 
 ## 9. [Agents](https://python.langchain.com/docs/modules/agents)
-Last but not least, you may not only build the RAG app to answer questions from documents, we can have multiple tools to augment the LLM app. An agent uses the LLM to choose a sequence of actions to take to solve a problem.
+Last but not least, you may not only build the RAG app to answer questions from documents, we can have multiple tools to augment the LLM app, or [route question between multiple datastores][Dynamic routing]. An agent uses the LLM to choose a sequence of actions to take to solve a problem.
 
 ![agents.png](media/agents.svg)
 
@@ -132,7 +138,7 @@ There are some types of agents we should first start with:
 - [OpenAI assistants](https://python.langchain.com/docs/modules/agents/agent_types/openai_assistants)
 
 ## Conclusion
-I suggest to read all above methods, and then pick the ones that are most relevant to your use case. You can also combine multiple approaches to get the best result. For example, the first architecture can be turned to a below one. 
+I suggest to read all above methods and other [RAG Strategies from Open AI][OpenAI RAG Strategies], and then pick the ones that are most relevant to your use case. You can also combine multiple approaches to get the best result. For example, the first architecture can be turned to a below one. 
 ![advanced-rag](media/advanced-rag.gif)
 If you find this article useful, please give it a star and share it with your friends. Also kindly follow me in [LinkedIn][LinkedIn] and [Medium][Medium]
 
@@ -146,5 +152,7 @@ Thanks for reading!
 [LangSmith]: https://smith.langchain.com
 [MLflow]: https://github.com/mlflow/mlflow
 [DeepEval]: https://github.com/confident-ai/deepeval
+[OpenAI RAG Strategies]: https://blog.langchain.dev/applying-openai-rag
+[Dynamic routing]: https://python.langchain.com/docs/expression_language/how_to/routing
 [LinkedIn]: https://www.linkedin.com/pulse/9-methods-enhance-performance-llm-rag-application-tam-nguyen-ooljc
 [Medium]: https://tam159.medium.com/9-methods-to-enhance-the-performance-of-a-llm-rag-application-3bedfdc842e1
