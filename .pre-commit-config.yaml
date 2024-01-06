@@ -19,7 +19,7 @@ repos:
       - id: gitleaks
 
   - repo: https://github.com/psf/black
-    rev: 23.12.0
+    rev: 23.12.1
     hooks:
       - id: black
         exclude: alembic|custom_evaluation/ragas|.github
@@ -32,7 +32,7 @@ repos:
         exclude: alembic|custom_evaluation/ragas|.github
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.9
+    rev: v0.1.11
     hooks:
       - id: ruff
         exclude: alembic|custom_evaluation/ragas|.github
