@@ -19,20 +19,20 @@ repos:
       - id: gitleaks
 
   - repo: https://github.com/psf/black
-    rev: 24.4.0
+    rev: 24.4.2
     hooks:
       - id: black
         exclude: alembic|custom_evaluation/ragas|.github
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.9.0
+    rev: v1.10.0
     hooks:
       - id: mypy
         additional_dependencies: [ pydantic, types-PyYAML, types-requests, types-python-dateutil ]
         exclude: alembic|custom_evaluation/ragas|.github
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.3.6
+    rev: v0.4.2
     hooks:
       - id: ruff
         exclude: alembic|custom_evaluation/ragas|.github
