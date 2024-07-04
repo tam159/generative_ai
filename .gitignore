@@ -270,3 +270,4 @@ fabric.properties
 # Working directories
 app/
 local_experiments/
+**/data/*.pdf
