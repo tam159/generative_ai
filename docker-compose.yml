@@ -1,0 +1,73 @@
+version: '1'
+
+volumes:
+  pgvector_data:
+  mongo_data:
+  mongo_config:
+  redis_data:
+  redis_config:
+
+networks:
+  network:
+    driver: bridge
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    ports:
+      - "${POSTGRES_LOCAL_PORT}:5432"
+    volumes:
+      - pgvector_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+    networks:
+      - network
+
+  mongo:
+    image: mongo
+    ports:
+      - "${MONGO_LOCAL_PORT}:27017"
+    volumes:
+      - mongo_data:/data/db
+      - mongo_config:/data/configdb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+    networks:
+      - network
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - "${MONGO_EXPRESS_LOCAL_PORT}:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD}
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: "27017"
+#      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@mongo:27017/
+      ME_CONFIG_BASICAUTH: false
+    networks:
+      - network
+    depends_on:
+      - mongo
+
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "${REDIS_LOCAL_PORT}:6379"
+    volumes:
+      - redis_data:/data
+      - redis_config:/usr/local/etc/redis
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_PORT=6379
+      - REDIS_DATABASES=${REDIS_DB}
+    networks:
+      - network
