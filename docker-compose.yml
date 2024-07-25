@@ -6,6 +6,8 @@ volumes:
   mongo_config:
   redis_data:
   redis_config:
+  neo4j_data:
+  neo4j_plugins:
 
 networks:
   network:
@@ -69,5 +71,25 @@ services:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
       - REDIS_PORT=6379
       - REDIS_DATABASES=${REDIS_DB}
+    networks:
+      - network
+
+  neo4j:
+    image: neo4j:5.21.2
+#    image: neo4j
+    ports:
+      - "${NEO4J_LOCAL_WEB_PORT}:7474"
+      - "${NEO4J_LOCAL_DB_PORT}:7687"
+    volumes:
+      - neo4j_data:/data
+      - neo4j_plugins:/plugins
+    environment:
+      NEO4J_AUTH: "${NEO4J_USER}/${NEO4J_PASSWORD}"
+      NEO4J_PLUGINS: '["graph-data-science", "apoc"]'
+#      NEO4J_PLUGINS: '["graph-data-science", "apoc", "apoc-extended"]'
+      NEO4J_apoc_export_file_enabled: true
+      NEO4J_apoc_import_file_enabled: true
+      NEO4J_apoc_import_file_use__neo4j__config: true
+#    user: ${NEO4J_USER_ID}:${NEO4J_GROUP_ID}
     networks:
       - network
