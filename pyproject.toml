@@ -6,7 +6,7 @@ authors = ["Tam Nguyen <npt.dc@outlook.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.11, <3.12"
-openai = "^1.41.0"
+openai = "^1.41.1"
 pandas = "^2.2.2"
 fastapi = "^0.112.1"
 pydantic-settings = "^2.4.0"
