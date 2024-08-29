@@ -13,7 +13,7 @@ pydantic-settings = "^2.4.0"
 pyautogen = "^0.2.35"
 langchain = "^0.2.15"
 langgraph = "^0.2.14"
-langgraph-cli = "^0.1.51"
+langgraph-cli = "^0.1.52"
 langgraph-checkpoint-postgres = "^1.0.4"
 langgraph-checkpoint-sqlite = "^1.0.0"
 langchainhub = "^0.1.20"
@@ -69,7 +69,7 @@ opencv-python = "^4.9.0.84"
 vowpal-wabbit-next = "^0.7.0"
 #tavily-python = "^0.3.6"
 google-search-results = "^2.4.2"
-google-api-python-client = "^2.142.0"
+google-api-python-client = "^2.143.0"
 unstructured = {extras = ["docx", "pdf"], version = "^0.15.8"}
 
 [build-system]
