@@ -271,3 +271,7 @@ fabric.properties
 app/
 local_experiments/
 **/data/*.pdf
+
+# Spark
+**/agent_warehouse/**
+**/metastore_db/**
