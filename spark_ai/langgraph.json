@@ -1,0 +1,23 @@
+{
+  "python_version": "3.12",
+  "dockerfile_lines": [
+    "RUN apt update && apt upgrade -y",
+    "RUN apt install -y wget vim lsb-release gnupg2 procps",
+    "RUN wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | apt-key add -",
+    "RUN echo \"deb https://packages.adoptium.net/artifactory/deb $(lsb_release -sc) main\" | tee /etc/apt/sources.list.d/adoptium.list",
+    "RUN apt update && apt install -y temurin-8-jre",
+    "RUN wget https://dlcdn.apache.org/spark/spark-3.5.2/spark-3.5.2-bin-hadoop3-scala2.13.tgz",
+    "RUN tar -xvzf spark-3.5.2-bin-hadoop3-scala2.13.tgz -C /opt && rm spark-3.5.2-bin-hadoop3-scala2.13.tgz",
+    "ENV JAVA_HOME=/usr/lib/jvm/temurin-8-jre-arm64",
+    "ENV SPARK_HOME=/opt/spark-3.5.2-bin-hadoop3-scala2.13",
+    "ENV PATH=$PATH:$SPARK_HOME/bin"
+  ],
+  "dependencies": [
+    "."
+  ],
+  "graphs": {
+    "spark_lakehouse_agent": "./spark_agent/lakehouse_agent.py:graph",
+    "search_agent": "./spark_agent/search_agent.py:graph"
+  },
+  "env": ".env"
+}

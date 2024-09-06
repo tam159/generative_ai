@@ -1,0 +1,173 @@
+[tool.poetry]
+name = "spark_agent"
+version = "0.0.1"
+description = "Analytics with Spark and GenAI"
+authors = ["Tam Nguyen <npt.dc@outlook.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.12, <3.13"
+openai = "^1.40.1"
+fastapi = "^0.112.0"
+pydantic-settings = "^2.4.0"
+langchain = "^0.2.15"
+langgraph-cli = "^0.1.52"
+langchainhub = "^0.1.20"
+langchain-openai = "^0.1.23"
+langchain-experimental = "^0.0.64"
+pyspark = "^3.5.2"
+faiss-cpu = "^1.8.0.post1"
+psycopg = {extras = ["binary", "pool"], version = "^3.2.1"}
+types-PyYAML = "^6.0.12.20240808"
+types-requests = "^2.32.0.20240622"
+types-python-dateutil = "^2.9.0.20240821"
+tiktoken = "^0.7.0"
+python-dotenv = "^1.0.1"
+tavily-python = "^0.4.0"
+unstructured = {extras = ["docx", "pdf"], version = "^0.15.9"}
+
+[tool.poetry.dev-dependencies]
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 88
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.pydocstyle]
+ignore = ["D104", "D107", "D212", "D203"]
+
+[tool.sqlfmt]
+line_length = 120
+exclude=["target/**/*", "dbt_packages/**/*", "notebooks/**/*", "macros/**/*"]
+
+[tool.sqlfluff]
+
+[tool.sqlfluff.core]
+max_line_length = 120
+templater = "jinja"
+sql_file_exts = ".sql,.sql.j2,.dml,.ddl"
+exclude_rules = "RF02"
+
+[tool.sqlfluff.indentation]
+indented_joins = false
+indented_using_on = true
+template_blocks_indent = false
+
+[tool.sqlfluff.templater]
+unwrap_wrapped_queries = true
+
+[tool.sqlfluff.templater.jinja]
+apply_dbt_builtins = true
+
+[tool.sqlfluff.rules.capitalisation.keywords]
+capitalisation_policy = "lower"
+extended_capitalisation_policy = "lower"
+
+
+[tool.ruff]
+# Same as Black.
+line-length = 88
+
+# Allow unused variables when underscore-prefixed.
+lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Assume Python 3.11.
+target-version = "py311"
+
+# Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
+#select = ["AIR", "ARG", "B", "D", "E", "F", "I", "ICN", "N", "PD", "PT", "PTH", "RET", "TD", "TID", "W"]
+#select = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "EM", "ERA", "EXE", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "UP", "YTT"]
+lint.select = ["ALL"]
+lint.ignore = [
+    "ANN",      # Type hints related, let mypy/pyright handle these.
+    "COM812",   # "Trailing comma missing". If black is happy, I'm happy.
+    "D104",     # "Missing docstring in public package"
+    "D107",     # "Missing docstring in __init__"
+    "D212",     # "Multi-line docstring summary should start at the first line"
+    "D203",     # "1 blank line required before class docstring"
+    "DTZ001",   # "The use of datetime.datetime() without tzinfo argument is not allowed". It's OK for Airflow DAG start_date
+    "E501",     # "Line too long". If black is happy, I'm happy.
+    "EM101",    # "Exception must not use a string literal, assign to variable first". It's OK
+    "EM102",    # "Exception must not use an f-string literal, assign to variable first". It's OK
+    "FBT003",   # "Boolean positional value in function call". I need to defind Spark StructField not NULL columns
+    "FIX002",   # "Line contains TODO, consider resolving the issue". It's OK
+    "G004",     # "Logging statement uses f-string". Will try to logger.info("Hello, %s!", name)
+    "INP001",   # "File {filename} is part of an implicit namespace package. Add an __init__.py". dags folder doesn't need __init__.py
+    "PLR0913",  # "Too many arguments to function call ({c_args} > {max_args})". It's OK for some functions
+    "RET504",   # "Unnecessary variable assignment before return statement". It's OK to make result clearer
+
+    # Should be commented for new project
+#    "ARG002",   # "Unused method argument: {name}". Will add noqa for Airflow context
+#    "DTZ002",   # "The use of datetime.datetime.today() is not allowed, use datetime.datetime.now(tz=) instead". Will improve later
+#    "DTZ007",   # "The use of datetime.datetime.strptime() without %z must be followed by .replace(tzinfo=) or .astimezone()". Will improve later
+#    "DTZ005",   # "The use of datetime.datetime.now() without tz argument is not allowed". Will improve later
+#    "DTZ011",   # "The use of datetime.date.today() is not allowed, use datetime.datetime.now(tz=).date() instead". Will improve later
+#    "FBT",      # "flake8-boolean-trap". Will improve later
+#    "PLC1901",  # "{} can be simplified to {} as an empty string is falsey". Will improve later
+#    "PLR2004",  # "Magic value used in comparison, consider replacing {value} with a constant variable". Will improve later
+#    "PTH123",   # "open() should be replaced by Path.open()". Will improve later
+#    "S113",     # "Probable use of requests call with timeout set to {value}". Will add timeout later
+#    "S608",     # "Possible SQL injection vector through string-based query construction". Will modify later
+#    "SIM115",   # "Use context handler for opening files". Will improve later
+#    "SIM117",   # "Use a single with statement with multiple contexts instead of nested with statements". Will modify later
+#    "TRY002",   # "Create your own exception". Will improve later
+#    "TRY003",   # "Avoid specifying long messages outside the exception class". Will improve later
+#    "TRY004",   # "Prefer TypeError exception for invalid type". Will improve later
+#    "TRY201",   # "Use raise without specifying exception name". Will improve later
+#    "TRY302",   # "Remove exception handler; error is immediately re-raised". Will improve later
+#    "TRY400",   # "Use logging.exception instead of logging.error. Will modify later
+
+    # Ignore example in jerry-git/pytest-split
+#    "S101",     # "Use of `assert` detected"
+#    "SIM108",   # "Use ternary operator ...". Ternary is harmful for readability in some cases.
+#    "TRY003",   # "Avoid specifying long messages outside the exception class"
+    ]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+lint.fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+lint.unfixable = []
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "notebooks",
+    "venv",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.ruff.lint.mccabe]
+# Unlike Flake8, default to a complexity level of 10.
+max-complexity = 10
