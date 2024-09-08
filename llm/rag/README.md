@@ -1,4 +1,4 @@
-# 9 Methods to Enhance the Performance of a LLM RAG Application
+# [9 Methods to Enhance the Performance of an LLM RAG Application](https://www.linkedin.com/pulse/9-methods-enhance-performance-llm-rag-application-tam-nguyen-ooljc/)
 
 It is easy to prototype your first LLM RAG (Retrieval Augmented Generation) application, e.g. using this [chat-langchain][chat-langchain] template with below architecture.
 ![basic-rag](media/basic-rag.png)
