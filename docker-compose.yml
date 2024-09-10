@@ -1,5 +1,3 @@
-version: '1'
-
 volumes:
   pgvector_data:
   mongo_data:
@@ -27,55 +25,55 @@ services:
     networks:
       - network
 
-  mongo:
-    image: mongo
-    ports:
-      - "${MONGO_LOCAL_PORT}:27017"
-    volumes:
-      - mongo_data:/data/db
-      - mongo_config:/data/configdb
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
-      MONGO_INITDB_DATABASE: ${MONGO_DB}
-    networks:
-      - network
+#  mongo:
+#    image: mongo
+#    ports:
+#      - "${MONGO_LOCAL_PORT}:27017"
+#    volumes:
+#      - mongo_data:/data/db
+#      - mongo_config:/data/configdb
+#    restart: always
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+#      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+#      MONGO_INITDB_DATABASE: ${MONGO_DB}
+#    networks:
+#      - network
 
-  mongo-express:
-    image: mongo-express
-    restart: always
-    ports:
-      - "${MONGO_EXPRESS_LOCAL_PORT}:8081"
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USER}
-      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD}
-      ME_CONFIG_MONGODB_SERVER: mongo
-      ME_CONFIG_MONGODB_PORT: "27017"
-#      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@mongo:27017/
-      ME_CONFIG_BASICAUTH: false
-    networks:
-      - network
-    depends_on:
-      - mongo
+#  mongo-express:
+#    image: mongo-express
+#    restart: always
+#    ports:
+#      - "${MONGO_EXPRESS_LOCAL_PORT}:8081"
+#    environment:
+#      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USER}
+#      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD}
+#      ME_CONFIG_MONGODB_SERVER: mongo
+#      ME_CONFIG_MONGODB_PORT: "27017"
+##      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@mongo:27017/
+#      ME_CONFIG_BASICAUTH: false
+#    networks:
+#      - network
+#    depends_on:
+#      - mongo
 
-  redis:
-    image: redis
-    restart: always
-    ports:
-      - "${REDIS_LOCAL_PORT}:6379"
-    volumes:
-      - redis_data:/data
-      - redis_config:/usr/local/etc/redis
-    environment:
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
-      - REDIS_PORT=6379
-      - REDIS_DATABASES=${REDIS_DB}
-    networks:
-      - network
+#  redis:
+#    image: redis
+#    restart: always
+#    ports:
+#      - "${REDIS_LOCAL_PORT}:6379"
+#    volumes:
+#      - redis_data:/data
+#      - redis_config:/usr/local/etc/redis
+#    environment:
+#      - REDIS_PASSWORD=${REDIS_PASSWORD}
+#      - REDIS_PORT=6379
+#      - REDIS_DATABASES=${REDIS_DB}
+#    networks:
+#      - network
 
   neo4j:
-    image: neo4j:5.21.2
+    image: neo4j:5.23.0
 #    image: neo4j
     ports:
       - "${NEO4J_LOCAL_WEB_PORT}:7474"
