@@ -1,0 +1,55 @@
+version: '3.8'
+
+volumes:
+  langgraph-data:
+    driver: local
+
+services:
+  langgraph-redis:
+    image: redis:6
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 1s
+      retries: 5
+
+  langgraph-postgres:
+    image: postgres:16
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - langgraph-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      start_period: 10s
+      timeout: 1s
+      retries: 5
+      interval: 60s
+      start_interval: 1s
+
+  langgraph-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8123:8000"
+    volumes:
+      - .:/deps/spark_ai
+    depends_on:
+      langgraph-redis:
+        condition: service_healthy
+      langgraph-postgres:
+        condition: service_healthy
+    environment:
+      REDIS_URI: redis://langgraph-redis:6379
+      POSTGRES_URI: postgres://postgres:postgres@langgraph-postgres:5432/postgres?sslmode=disable
+    env_file: .env
+    healthcheck:
+      test: ["CMD", "python", "/api/healthcheck.py"]
+      interval: 60s
+      start_interval: 1s
+      start_period: 10s
