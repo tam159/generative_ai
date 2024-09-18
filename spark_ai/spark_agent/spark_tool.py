@@ -3,7 +3,7 @@
 
 from typing import Any, Dict, Optional
 
-from langchain_core.pydantic_v1 import BaseModel, Field, root_validator
+from pydantic import BaseModel, Field, model_validator, ConfigDict
 
 from langchain_core.language_models import BaseLanguageModel
 from langchain_core.callbacks import (
@@ -11,9 +11,9 @@ from langchain_core.callbacks import (
     CallbackManagerForToolRun,
 )
 from langchain_core.prompts import PromptTemplate
+from spark_agent.spark_sql import SparkSQL
 from langchain_core.tools import BaseTool
 from langchain_community.tools.spark_sql.prompt import QUERY_CHECKER
-from spark_agent.spark_sql import SparkSQL
 
 
 class BaseSparkSQLTool(BaseModel):
@@ -21,8 +21,9 @@ class BaseSparkSQLTool(BaseModel):
 
     db: SparkSQL = Field(exclude=True)
 
-    class Config(BaseTool.Config):
-        pass
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+    )
 
 
 class QuerySparkSQLTool(BaseSparkSQLTool, BaseTool):
@@ -68,7 +69,9 @@ class ListSparkSQLTool(BaseSparkSQLTool, BaseTool):
     """Tool for getting tables names."""
 
     name: str = "list_tables_sql_db"
-    description: str = "Input is an empty string, output is a comma separated list of tables in the Spark SQL."
+    description: str = (
+        "Input is an empty string, output is a comma separated list of tables in the Spark SQL."
+    )
 
     def _run(
         self,
@@ -92,8 +95,9 @@ class QueryCheckerTool(BaseSparkSQLTool, BaseTool):
     Always use this tool before executing a query with query_sql_db!
     """
 
-    @root_validator(pre=True)
-    def initialize_llm_chain(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+    @model_validator(mode="before")
+    @classmethod
+    def initialize_llm_chain(cls, values: Dict[str, Any]) -> Any:
         if "llm_chain" not in values:
             from langchain.chains.llm import LLMChain
 
