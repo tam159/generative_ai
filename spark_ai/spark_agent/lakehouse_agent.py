@@ -112,7 +112,8 @@ def get_compiled_graph() -> CompiledStateGraph:
     workflow.add_edge("safe_tools", "agent")
     workflow.add_edge("sensitive_tools", "agent")
 
-    return workflow.compile(interrupt_before=["sensitive_tools"])
+    return workflow.compile()
+    # return workflow.compile(interrupt_before=["sensitive_tools"])
 
 
 graph = get_compiled_graph()
