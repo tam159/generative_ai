@@ -30,7 +30,7 @@ redis = "^5.1.0"
 neo4j = "5.25.0"
 netgraph = "^4.13.2"
 pymongo = "^4.9.1"
-psycopg = {extras = ["binary", "pool"], version = "^3.2.2"}
+psycopg = {extras = ["binary", "pool"], version = "^3.2.3"}
 psycopg2-binary = "^2.9.9"
 pyodbc = "^5.1.0"
 #mem0ai = "^0.1.13"
