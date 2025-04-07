@@ -1,0 +1,13 @@
+{
+    "mcpServers": {
+        "langgraph-mcp": {
+            "command": "~/.virtualenvs/generative_ai/bin/python3",
+            "args": [
+                "./generative_ai/llm/notebook/mcp/langgraph-mcp.py"
+            ],
+            "env": {
+                "OPENAI_API_KEY": "<your-openai-api-key>"
+            }
+        }
+    }
+}
