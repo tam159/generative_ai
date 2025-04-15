@@ -8,6 +8,8 @@ authors = ["Tam Nguyen <npt.dc@outlook.com>"]
 python = ">=3.12,<3.13"
 #cohere = "^5.11.0"
 pandas = "^2.2.3"
+pyarrow = "^19.0.1"
+scikit-learn = "^1.6.1"
 #fastapi = "^0.115.7"
 pydantic-settings = "^2.8.1"
 #pyautogen = "^0.3.1"
