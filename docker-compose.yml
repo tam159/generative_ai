@@ -6,6 +6,8 @@ volumes:
   redis_config:
   neo4j_data:
   neo4j_plugins:
+  mysql_data:
+  mssql_data:
 
 networks:
   network:
@@ -91,3 +93,32 @@ services:
 #    user: ${NEO4J_USER_ID}:${NEO4J_GROUP_ID}
     networks:
       - network
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - "${MYSQL_LOCAL_PORT}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - network
+    restart: always
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "${MSSQL_LOCAL_PORT}:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "${MSSQL_SA_PASSWORD}"
+      # MSSQL_PID: "Developer" # Optional: Specify an edition like Developer, Express, Standard, Enterprise, etc.
+    networks:
+      - network
+    restart: always
