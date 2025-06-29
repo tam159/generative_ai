@@ -64,6 +64,7 @@ dependencies = [
     "googlesearch-python>=1.3.0",
     "google-adk>=1.1.1",
     "litellm>=1.71.2",
+    "vllm>=0.9.1",
 ]
 
 [dependency-groups]
