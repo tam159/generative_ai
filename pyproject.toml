@@ -65,6 +65,7 @@ dependencies = [
     "google-adk>=1.1.1",
     "litellm>=1.71.2",
     "vllm>=0.9.1",
+    "dspy>=2.6.27",
 ]
 
 [dependency-groups]
