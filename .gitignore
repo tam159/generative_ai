@@ -275,3 +275,6 @@ local_experiments/
 # Spark
 **/agent_warehouse/**
 **/metastore_db/**
+
+# MLFlow
+mlartifacts/
