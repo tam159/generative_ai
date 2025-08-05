@@ -17,6 +17,15 @@ resolution-markers = [
 prerelease-mode = "allow"
 
 [[package]]
+name = "absl-py"
+version = "2.3.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/10/2a/c93173ffa1b39c1d0395b7e842bbdc62e556ca9d8d3b5572926f3e4ca752/absl_py-2.3.1.tar.gz", hash = "sha256:a97820526f7fbfd2ec1bce83f3f25e3a14840dac0d8e02a0b71cd75db3f77fc9", size = 116588, upload-time = "2025-07-03T09:31:44.05Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8f/aa/ba0014cc4659328dc818a28827be78e6d97312ab0cb98105a770924dc11e/absl_py-2.3.1-py3-none-any.whl", hash = "sha256:eeecf07f0c2a93ace0772c92e596ace6d3d3996c042b2128459aaae2a76de11d", size = 135811, upload-time = "2025-07-03T09:31:42.253Z" },
+]
+
+[[package]]
 name = "accelerate"
 version = "1.7.0"
 source = { registry = "https://pypi.org/simple" }
@@ -307,6 +316,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/b2/4d/71ec4d3939dc755264f680f6c2b4906423a304c3d18e96853f0a595dfe97/async_lru-2.0.5.tar.gz", hash = "sha256:481d52ccdd27275f42c43a928b4a50c3bfb2d67af4e78b170e3e0bb39c66e5bb", size = 10380, upload-time = "2025-03-16T17:25:36.919Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/03/49/d10027df9fce941cb8184e78a02857af36360d33e1721df81c5ed2179a1a/async_lru-2.0.5-py3-none-any.whl", hash = "sha256:ab95404d8d2605310d345932697371a5f40def0487c03d6d0ad9138de52c9943", size = 6069, upload-time = "2025-03-16T17:25:35.422Z" },
+]
+
+[[package]]
+name = "async-timeout"
+version = "5.0.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/a5/ae/136395dfbfe00dfc94da3f3e136d0b13f394cba8f4841120e34226265780/async_timeout-5.0.1.tar.gz", hash = "sha256:d9321a7a3d5a6a5e187e824d2fa0793ce379a202935782d555d6e9d2735677d3", size = 9274, upload-time = "2024-11-06T16:41:39.6Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/fe/ba/e2081de779ca30d473f21f5b30e0e737c438205440784c7dfc81efc2b029/async_timeout-5.0.1-py3-none-any.whl", hash = "sha256:39e3809566ff85354557ec2398b55e096c8364bacac9405a7a1fa429e77fe76c", size = 6233, upload-time = "2024-11-06T16:41:37.9Z" },
 ]
 
 [[package]]
@@ -1227,6 +1245,18 @@ wheels = [
 ]
 
 [[package]]
+name = "exceptiongroup"
+version = "1.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "typing-extensions", marker = "python_full_version < '3.13'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/0b/9f/a65090624ecf468cdca03533906e7c69ed7588582240cfe7cc9e770b50eb/exceptiongroup-1.3.0.tar.gz", hash = "sha256:b241f5885f560bc56a59ee63ca4c6a8bfa46ae4ad651af316d4e81817bb9fd88", size = 29749, upload-time = "2025-05-10T17:42:51.123Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/36/f4/c6e662dade71f56cd2f3735141b265c3c79293c109549c1e6933b0651ffc/exceptiongroup-1.3.0-py3-none-any.whl", hash = "sha256:4d111e6e0c13d0644cad6ddaa7ed0261a0b36971f6d23e7ec9b4b9097da78a10", size = 16674, upload-time = "2025-05-10T17:42:49.33Z" },
+]
+
+[[package]]
 name = "executing"
 version = "2.2.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1575,6 +1605,7 @@ dependencies = [
     { name = "langchain-openai" },
     { name = "langchain-postgres" },
     { name = "langchainhub" },
+    { name = "langextract" },
     { name = "langgraph" },
     { name = "langgraph-checkpoint-postgres" },
     { name = "langgraph-checkpoint-sqlite" },
@@ -1656,6 +1687,7 @@ requires-dist = [
     { name = "langchain-openai", specifier = ">=0.3.12" },
     { name = "langchain-postgres", specifier = ">=0.0.14" },
     { name = "langchainhub", specifier = ">=0.1.21" },
+    { name = "langextract", specifier = ">=1.0.1" },
     { name = "langgraph", specifier = ">=0.3.29" },
     { name = "langgraph-checkpoint-postgres", specifier = ">=2.0.19" },
     { name = "langgraph-checkpoint-sqlite", specifier = ">=2.0.6" },
@@ -3380,6 +3412,50 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/0e/72/a3add0e4eec4eb9e2569554f7c70f4a3c27712f40e3284d483e88094cc0e/langdetect-1.0.9.tar.gz", hash = "sha256:cbc1fef89f8d062739774bd51eda3da3274006b3661d199c2655f6b3f6d605a0", size = 981474, upload-time = "2021-05-07T07:54:13.562Z" }
 
 [[package]]
+name = "langextract"
+version = "1.0.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "absl-py" },
+    { name = "aiohttp" },
+    { name = "async-timeout" },
+    { name = "exceptiongroup" },
+    { name = "google-genai" },
+    { name = "langfun" },
+    { name = "ml-collections" },
+    { name = "more-itertools" },
+    { name = "numpy" },
+    { name = "openai" },
+    { name = "pandas" },
+    { name = "pydantic" },
+    { name = "pylibmagic" },
+    { name = "python-dotenv" },
+    { name = "python-magic" },
+    { name = "requests" },
+    { name = "tqdm" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/58/fd/aa28821a21fbe3851264691d99a88ae67420309d126b3f0ac072bc238b06/langextract-1.0.1.tar.gz", hash = "sha256:da1dcded7eea3d7d6544a55ca85b423ccec1fdffe954b088e934008e0f5a46dc", size = 56799, upload-time = "2025-08-02T06:41:10.858Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/4c/73/015102d77ea462366cfccd8183b3e45038ebd188dff3c62b1c66fe395e57/langextract-1.0.1-py3-none-any.whl", hash = "sha256:cabed430838ac61190cd527eac729be3f849645be911e5d5a0df4831a7a61fbc", size = 60739, upload-time = "2025-08-02T06:41:09.037Z" },
+]
+
+[[package]]
+name = "langfun"
+version = "0.1.2.dev202508020804"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "jinja2" },
+    { name = "puremagic" },
+    { name = "pyglove" },
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3b/26/84ac64f19edfebcef15c564ed6d0bd18c038b3744256b090206f76873dee/langfun-0.1.2.dev202508020804.tar.gz", hash = "sha256:707618e62cdc9f5edeb2f8ab6e56196c3cacaa01d202c1d121ced97b230a2d7e", size = 294249, upload-time = "2025-08-02T08:04:38.763Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ac/9d/e863bf6a3297a68ed24cedeff0569adadf94ecba8d5b2a1e6b441f3ed1de/langfun-0.1.2.dev202508020804-py3-none-any.whl", hash = "sha256:e48126573c66a6f476b0495fec32c8173250792d3045bfc4ffc4ac6fb330cc33", size = 417902, upload-time = "2025-08-02T08:04:36.332Z" },
+]
+
+[[package]]
 name = "langgraph"
 version = "0.5.0rc1"
 source = { registry = "https://pypi.org/simple" }
@@ -4125,6 +4201,19 @@ wheels = [
 ]
 
 [[package]]
+name = "ml-collections"
+version = "1.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "absl-py" },
+    { name = "pyyaml" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/b8/f8/1a9ae6696dbb6bc9c44ddf5c5e84710d77fe9a35a57e8a06722e1836a4a6/ml_collections-1.1.0.tar.gz", hash = "sha256:0ac1ac6511b9f1566863e0bb0afad0c64e906ea278ad3f4d2144a55322671f6f", size = 61356, upload-time = "2025-04-17T08:25:02.247Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ab/8a/18d4ff2c7bd83f30d6924bd4ad97abf418488c3f908dea228d6f0961ad68/ml_collections-1.1.0-py3-none-any.whl", hash = "sha256:23b6fa4772aac1ae745a96044b925a5746145a70734f087eaca6626e92c05cbc", size = 76707, upload-time = "2025-04-17T08:24:59.038Z" },
+]
+
+[[package]]
 name = "mlflow"
 version = "3.1.1"
 source = { registry = "https://pypi.org/simple" }
@@ -4175,6 +4264,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/dd/52/e63c0244a24ed23b5f82b30efffce150c19f126b8ef977b78a56f6d192c9/mlflow_skinny-3.1.1.tar.gz", hash = "sha256:9c2ea510eef6c115c7241305b65f7090d7fdc02399de2a6e8ddae5f285bb7a99", size = 1603411, upload-time = "2025-06-25T05:52:22.717Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/f6/45/24d553e0f550f82aaadd8b9d08f1410a3d750c51733a5f43fcc6def1be00/mlflow_skinny-3.1.1-py3-none-any.whl", hash = "sha256:73b1be5d0ef3099c2d0e5ec3ca7fd0b85d4a6def7d7ab35feda9f06bf8bf7049", size = 1926660, upload-time = "2025-06-25T05:52:20.556Z" },
+]
+
+[[package]]
+name = "more-itertools"
+version = "10.7.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/ce/a0/834b0cebabbfc7e311f30b46c8188790a37f89fc8d756660346fe5abfd09/more_itertools-10.7.0.tar.gz", hash = "sha256:9fddd5403be01a94b204faadcff459ec3568cf110265d3c54323e1e866ad29d3", size = 127671, upload-time = "2025-04-22T14:17:41.838Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/2b/9f/7ba6f94fc1e9ac3d2b853fdff3035fb2fa5afbed898c4a72b8a020610594/more_itertools-10.7.0-py3-none-any.whl", hash = "sha256:d43980384673cb07d2f7d2d918c616b30c659c089ee23953f601d6609c67510e", size = 65278, upload-time = "2025-04-22T14:17:40.49Z" },
 ]
 
 [[package]]
@@ -5662,6 +5760,15 @@ wheels = [
 ]
 
 [[package]]
+name = "puremagic"
+version = "2.0.0b4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/71/25/ad2258b828a6fb4addef2bd6cbb17cbd1c480e063dd33e26d43988d41bff/puremagic-2.0.0b4.tar.gz", hash = "sha256:15a10611cad613f8d07697d4e41fefc1d1cd2cd08a8e2c881cb66ec01731cae1", size = 530965, upload-time = "2025-07-05T14:40:08.239Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b5/3e/0998660a13090d0c82d03ebc630098a0d4d45d497888d9cd5ea733fdb0f4/puremagic-2.0.0b4-py3-none-any.whl", hash = "sha256:99b15e6bb598b3b8ad32c565846a9fe16e9b6d9af653fbfebb81fd0c5c4f5541", size = 48215, upload-time = "2025-07-05T14:40:06.593Z" },
+]
+
+[[package]]
 name = "py"
 version = "1.11.0"
 source = { registry = "https://pypi.org/simple" }
@@ -5871,6 +5978,19 @@ wheels = [
 ]
 
 [[package]]
+name = "pyglove"
+version = "0.5.0.dev202508020810"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "docstring-parser" },
+    { name = "termcolor" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/97/b5/01f21b6699cc04e4f916f14f80c671437051a3900e052f66384835d12b59/pyglove-0.5.0.dev202508020810.tar.gz", hash = "sha256:b1553f7bcdcbd02c0e8c380befd7fc2f548fd301a933f0302412c97a00406c9e", size = 533558, upload-time = "2025-08-02T08:10:06.668Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f9/f1/019c80286f30355c5d0f41c8f864a02f3d653de1add3e0942d875433846f/pyglove-0.5.0.dev202508020810-py3-none-any.whl", hash = "sha256:d56d10606bf2f5234d415cdf17b972d8fa0a749d36a5e92bfc1d4f6c717c844c", size = 699107, upload-time = "2025-08-02T08:10:04.079Z" },
+]
+
+[[package]]
 name = "pygments"
 version = "2.19.1"
 source = { registry = "https://pypi.org/simple" }
@@ -5886,6 +6006,20 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/e7/46/bd74733ff231675599650d3e47f361794b22ef3e3770998dda30d3b63726/pyjwt-2.10.1.tar.gz", hash = "sha256:3cc5772eb20009233caf06e9d8a0577824723b44e6648ee0a2aedb6cf9381953", size = 87785, upload-time = "2024-11-28T03:43:29.933Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/61/ad/689f02752eeec26aed679477e80e632ef1b682313be70793d798c1d5fc8f/PyJWT-2.10.1-py3-none-any.whl", hash = "sha256:dcdd193e30abefd5debf142f9adfcdd2b58004e644f25406ffaebd50bd98dacb", size = 22997, upload-time = "2024-11-28T03:43:27.893Z" },
+]
+
+[[package]]
+name = "pylibmagic"
+version = "0.5.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/b2/43/224e264598573f0e8befb13c1db7b5a28d1b43b5e7c26cc48eced1250f5c/pylibmagic-0.5.0.tar.gz", hash = "sha256:942f4f194994f09021f6a4e6e6477ceeb28e4e92dc268fda10d96fa45c8c9ec4", size = 13905, upload-time = "2023-10-19T21:22:15.085Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/23/d7/2b22d223c4b667b5eacb8ab59c16ac907c66cd4a874e9565f4488e663880/pylibmagic-0.5.0-py3-none-macosx_10_9_x86_64.whl", hash = "sha256:6e4aed7e50e7be87c33d7616393ec605be494388576efe3baa300da1d4c99703", size = 697038, upload-time = "2023-10-19T21:22:01.03Z" },
+    { url = "https://files.pythonhosted.org/packages/f9/69/ddecd0e57b1eff57abaee3aad1f435621e9907a2ea900612f7c13cce4904/pylibmagic-0.5.0-py3-none-macosx_11_0_arm64.whl", hash = "sha256:f403cf26e530fa45bcb260fed80f1cecc2df777f2d0239078a234b4f2f97dbf7", size = 697602, upload-time = "2023-10-19T21:22:02.961Z" },
+    { url = "https://files.pythonhosted.org/packages/79/30/31e159d326f893466d3911f174cad689c57ecb33769fddb63262a9b319e8/pylibmagic-0.5.0-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:e8614c1e9d7bb0c6b6989646e385a514acb111fed9ec64f50aaf0e21dcf7b7bb", size = 617427, upload-time = "2023-10-19T21:22:05.852Z" },
+    { url = "https://files.pythonhosted.org/packages/99/49/775ba344737cd503dc4dac029446d94f024e1744ef7755e89f4e7b146b5f/pylibmagic-0.5.0-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:24b5bb791d42653d2668913c7b9a789b5458a2fff09d0ec3c8af33a1204eea6a", size = 619447, upload-time = "2023-10-19T21:22:08.02Z" },
+    { url = "https://files.pythonhosted.org/packages/41/c5/a5205b60eea794a8d5db0310e6ae0031875c875c2b4d140fa57192678bcb/pylibmagic-0.5.0-py3-none-musllinux_1_1_aarch64.whl", hash = "sha256:10efe9403e45f3c9f379800991fb5f73c0f0fc80db4ec79b5e6db4d0a437a253", size = 652901, upload-time = "2023-10-19T21:22:11.062Z" },
+    { url = "https://files.pythonhosted.org/packages/65/46/b8a8cf8c30b9ef58c8f0d3ce8e86bf71764189e8e5b1d2f80dcbc1c422a0/pylibmagic-0.5.0-py3-none-musllinux_1_1_x86_64.whl", hash = "sha256:948e94de523211c01a8dc1eee235e3433bdc96a39d7ecf8039b814386c27b832", size = 658279, upload-time = "2023-10-19T21:22:13.108Z" },
 ]
 
 [[package]]
@@ -6876,6 +7010,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/0a/d4/2b0cd0fe285e14b36db076e78c93766ff1d529d70408bd1d2a5a84f1d929/tenacity-9.1.2.tar.gz", hash = "sha256:1169d376c297e7de388d18b4481760d478b0e99a777cad3a9c86e556f4b697cb", size = 48036, upload-time = "2025-04-02T08:25:09.966Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e5/30/643397144bfbfec6f6ef821f36f33e57d35946c44a2352d3c9f0ae847619/tenacity-9.1.2-py3-none-any.whl", hash = "sha256:f77bf36710d8b73a50b2dd155c97b870017ad21afe6ab300326b0371b3b05138", size = 28248, upload-time = "2025-04-02T08:25:07.678Z" },
+]
+
+[[package]]
+name = "termcolor"
+version = "3.1.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/ca/6c/3d75c196ac07ac8749600b60b03f4f6094d54e132c4d94ebac6ee0e0add0/termcolor-3.1.0.tar.gz", hash = "sha256:6a6dd7fbee581909eeec6a756cff1d7f7c376063b14e4a298dc4980309e55970", size = 14324, upload-time = "2025-04-30T11:37:53.791Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/4f/bd/de8d508070629b6d84a30d01d57e4a65c69aa7f5abe7560b8fad3b50ea59/termcolor-3.1.0-py3-none-any.whl", hash = "sha256:591dd26b5c2ce03b9e43f391264626557873ce1d379019786f99b0c2bee140aa", size = 7684, upload-time = "2025-04-30T11:37:52.382Z" },
 ]
 
 [[package]]
