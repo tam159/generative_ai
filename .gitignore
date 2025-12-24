@@ -278,3 +278,8 @@ local_experiments/
 
 # MLFlow
 mlartifacts/
+
+
+# Assets
+agent-icons
+generated-icons
