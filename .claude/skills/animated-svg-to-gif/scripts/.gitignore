@@ -1,0 +1,4 @@
+# puppeteer-core is installed on first run, never committed
+node_modules/
+package.json
+package-lock.json
