@@ -283,3 +283,5 @@ mlartifacts/
 # Assets
 agent-icons
 generated-icons
+
+.claude/settings.local.json
