@@ -9,5 +9,8 @@
     ],
     "deny": [],
     "ask": []
-  }
+  },
+  "enabledMcpjsonServers": [
+    "pycharm"
+  ]
 }
